@@ -1,0 +1,24 @@
+{
+  "name": "grilla-horarios",
+  "version": "1.0.0",
+  "description": "Trabajo practico N°1",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomasbarak/grilla-horarios.git"
+  },
+  "author": "tomasbarak",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/tomasbarak/grilla-horarios/issues"
+  },
+  "homepage": "https://github.com/tomasbarak/grilla-horarios#readme",
+  "dependencies": {
+    "@types/express": "^4.17.17",
+    "express": "^4.18.2",
+    "mysql2": "^3.2.0",
+    "nodemon": "^2.0.22",
+    "typescript": "^5.0.2"
+  }
+}
