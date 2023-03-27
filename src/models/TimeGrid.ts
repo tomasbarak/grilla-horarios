@@ -1,65 +1,69 @@
-import { Program } from './Program';
-import { Day } from './Day';
-import { Timeslot } from './Timeslot';
-
+import { Person } from "./Person";
+import { Program } from "./Program";
+import { isProgramOverlapping } from "../helpers/timeGrid/security";
 export class TimeGrid {
-    days: Day[];
-    timeslots: Timeslot[];
-    grid: any;
-    constructor(days: Day[]) {
-        this.days = days;
-        this.timeslots = [];
-        this.grid = {};
-        days.forEach(day => {
-            //Push days timeslots into general timeslots
-            this.timeslots.push(...day.getTimeslots());
+    id: number;
+    programs: Program[];
 
-            //Push days timeslots into grid
-            this.grid[day.id] = day.getTimeslots();
-        });
+    constructor(id: number, programs: Program[]) {
+        this.id = id;
+        this.programs = programs;
     }
 
-    getDays() {
-        return this.days;
+    // Getters
+
+    getId(): number {
+        return this.id;
     }
 
-    getTimeslots() {
-        return this.timeslots;
+    getPrograms(): Program[] {
+        return this.programs;
     }
 
-    getTimeslot(id: number) {
-        return this.timeslots[id];
+    // Setters
+
+    setId(id: number): void {
+        this.id = id;
     }
 
-    getTimeslotByDate(date: Date) {
-        return this.timeslots.find(timeslot => timeslot.horaInicio.getTime() === date.getTime());
+    setPrograms(programs: Program[]): void {
+        this.programs = programs;
     }
 
-    getTimeslotByTime(time: Date) {
-        return this.timeslots.find(timeslot => timeslot.horaInicio.getTime() === time.getTime());
+    // Methods
+
+    addProgram(program: Program): void {
+        if(!isProgramOverlapping(program, this.programs)) {
+            this.programs.push(program);
+        } else {
+            throw new Error("Program is overlapping");
+        }
     }
 
-    getTimeslotByTimeRange(time: Date, day: Day) {
-        return this.timeslots.find(timeslot => {
-            const date2 = new Date(timeslot.getId());
-            // console.log("Time param:", time.getTime(), "Time param month:", time.getMonth(), "Timeslot month:", date2.getMonth(), "Timeslot day:", date2.getDay(), "Timeslot time:", date2.getTime(), "Timeslot start time:", timeslot.horaInicio.getTime(), "Timeslot end time:", timeslot.horaFin.getTime(), day.getTimeslotByDate(date2) !== undefined);
-            return timeslot.horaInicio <= time && timeslot.horaFin > time && day.getTimeslotByDate(date2) !== undefined;
-        });
+    removeProgram(program: Program): void {
+        const index = this.programs.indexOf(program);
+        if (index > -1) {
+            this.programs.splice(index, 1);
+        }
     }
 
-    getDay(id: number) {
-        return this.days[id];
+    getProgramById(id: number): Program | undefined{
+        return this.programs.find(program => program.getId() === id);
     }
 
-    getDayByDate(date: Date) {
-        return this.days.find(day => day.id === date.getDay());
+    getProgramByName(name: string): Program | undefined{
+        return this.programs.find(program => program.getName() === name);
     }
 
-    addProgramToGrid(program: Program, day: Day, timeslot: Timeslot) {
-        this.grid[day.id][timeslot.id] = timeslot;
+    getProgramByDescription(description: string): Program | undefined{
+        return this.programs.find(program => program.getDescription() === description);
     }
-    displayGrid() {
-        console.log(this.grid);
+
+    getProgramByConductor(conductor: Person): Program | undefined{
+        return this.programs.find(program => program.getConductores().includes(conductor));
     }
-        
+
+    getProgramByProductor(productor: Person): Program | undefined{
+        return this.programs.find(program => program.getProductores().includes(productor));
+    }
 }

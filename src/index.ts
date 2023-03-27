@@ -1,14 +1,11 @@
-import { Day } from "./models/Day";
-import { Timeslot } from "./models/Timeslot";
-import { TimeGrid } from "./models/TimeGrid";
+import { start } from './server/server';
+import { setPersons } from './controllers/person';
+import { Person } from './models/Person';
 
-const Q = 36;
-const days = [];
+const person1 = new Person(1, 'John', 'Doe', 30);
+const person2 = new Person(2, 'Jane', 'Doe', 25);
+const person3 = new Person(3, 'John', 'Smith', 40);
 
-for (let i = 0; i < 7; i++) {
-    days.push(new Day(2023, 0, i, Q));
-}
+setPersons([person1, person2, person3]);
 
-const timeGrid = new TimeGrid(days);
-
-timeGrid.displayGrid();
+start(3000);
