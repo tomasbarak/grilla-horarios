@@ -5,14 +5,17 @@ import { Timeslot } from './Timeslot';
 export class TimeGrid {
     days: Day[];
     timeslots: Timeslot[];
-    grid: Timeslot[][];
+    grid: any;
     constructor(days: Day[]) {
         this.days = days;
         this.timeslots = [];
-        this.grid = [];
+        this.grid = {};
         days.forEach(day => {
             //Push days timeslots into general timeslots
             this.timeslots.push(...day.getTimeslots());
+
+            //Push days timeslots into grid
+            this.grid[day.id] = day.getTimeslots();
         });
     }
 
@@ -39,7 +42,8 @@ export class TimeGrid {
     getTimeslotByTimeRange(time: Date, day: Day) {
         return this.timeslots.find(timeslot => {
             const date2 = new Date(timeslot.getId());
-            return date2.getTime() <= time.getTime() && timeslot.horaFin.getTime() > time.getTime() && day.getTimeslotByDate(date2) !== undefined && date2.getDay(), day.id;
+            // console.log("Time param:", time.getTime(), "Time param month:", time.getMonth(), "Timeslot month:", date2.getMonth(), "Timeslot day:", date2.getDay(), "Timeslot time:", date2.getTime(), "Timeslot start time:", timeslot.horaInicio.getTime(), "Timeslot end time:", timeslot.horaFin.getTime(), day.getTimeslotByDate(date2) !== undefined);
+            return timeslot.horaInicio <= time && timeslot.horaFin > time && day.getTimeslotByDate(date2) !== undefined;
         });
     }
 
@@ -53,6 +57,9 @@ export class TimeGrid {
 
     addProgramToGrid(program: Program, day: Day, timeslot: Timeslot) {
         this.grid[day.id][timeslot.id] = timeslot;
+    }
+    displayGrid() {
+        console.log(this.grid);
     }
         
 }
