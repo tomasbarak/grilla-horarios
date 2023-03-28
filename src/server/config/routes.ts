@@ -1,10 +1,10 @@
 import { Application } from "express";
-import * as person from "../routes/person";
-import * as program from "../routes/program";
-import * as timeGrid from "../routes/timeGrid";
+import * as personRoute from "../routes/person";
+import * as programRoute from "../routes/program";
+import * as timeGridRoute from "../routes/timeGrid";
 
 export const init = (app: Application) => {
-    person.init(app);
-    program.init(app);
-    timeGrid.init(app);
+    personRoute.init(app);
+    programRoute.init(app);
+    timeGridRoute.init(app);
 }

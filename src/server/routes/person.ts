@@ -18,8 +18,8 @@ export const init = (app: Application) => {
         res.send(person);
     });
 
-    app.delete("/person", (req, res) => {
-        personController.deletePerson(req.body.id);
+    app.delete("/person/:id", (req, res) => {
+        personController.deletePerson(Number(req.params.id));
         res.send();
     });
 
