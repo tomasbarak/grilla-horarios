@@ -1,8 +1,7 @@
 import { Application } from "express"
-import { programController } from "../../controllers/program";
-import { Program } from "../../models/Program";
+import { ProgramController } from "../../controllers/program";
 
-export const init = (app: Application) => {
+export const init = (app: Application, programController: ProgramController) => {
     app.get("/program", (req, res) => {
         const programs = programController.getPrograms();
         res.json(programs);

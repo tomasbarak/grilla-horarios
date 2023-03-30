@@ -1,14 +1,17 @@
 import express from 'express';
-import { config } from './config/express';
-import { init } from './config/routes';
+import { PersonController } from '../controllers/person';
+import { ProgramController } from '../controllers/program';
+import { TimeGridController } from '../controllers/timeGrid';
+import * as server from './config/express';
+import * as routes from './config/routes';
 
-export const start = (port: number) => {
-const app = express();
+export const start = ( port: number, personController: PersonController, programController: ProgramController, timeGridController: TimeGridController) => {
+    const app = express();
 
-config(app);
-init(app);
+    server.config(app);
+    routes.init(app, personController, programController, timeGridController);
 
-app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
-});
+    app.listen(port, () => {
+        console.log(`Listening on port ${port}`);
+    });
 }

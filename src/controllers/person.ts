@@ -1,40 +1,45 @@
 import { Person } from "../models/Person";
 
-let persons: Person[] = [];
 
 
-export const personController = {
-    getPerson: (id: number) => {
-        return persons.find(person => person.getId() === id);
-    },
+export class PersonController {
+    private persons: Person[];
 
-    setPersons: (newPersons: Person[]) => {
-        persons = newPersons;
-    },
+    constructor() {
+        this.persons = [];
+    }
+
+    public getPerson(id: number) {
+        return this.persons.find(person => person.getId() === id);
+    }
+
+    public setPersons(newPersons: Person[]) {
+        this.persons = newPersons;
+    }
     
-    getPersons: () => {
-        return persons;
-    },
+    public getPersons() {
+        return this.persons;
+    }
 
-    addPerson: (person: Person) => {
-        persons.push(person);
-    },
+    public addPerson(person: Person) {
+        this.persons.push(person);
+    }
 
-    updatePerson: (person: Person) => {
-        const index = persons.findIndex(p => p.getId() === person.getId());
+    public updatePerson(person: Person) {
+        const index = this.persons.findIndex(p => p.getId() === person.getId());
         if (index === -1) {
             return;
         }
 
-        persons[index] = person;
-    },
+        this.persons[index] = person;
+    }
 
-    deletePerson: (id: number) => {
-        const index = persons.findIndex(p => p.getId() === id);
+    public deletePerson(id: number) {
+        const index = this.persons.findIndex(p => p.getId() === id);
         if (index === -1) {
             return;
         }
 
-        persons.splice(index, 1);
+        this.persons.splice(index, 1);
     }
 }

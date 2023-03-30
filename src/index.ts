@@ -1,8 +1,14 @@
 import * as server from './server/server';
-import { personController } from './controllers/person';
 import { Person } from './models/Person';
 import { Program } from './models/Program';
-import { programController } from './controllers/program';
+
+import { PersonController } from './controllers/person';
+import { ProgramController } from "./controllers/program";
+import { TimeGridController } from "./controllers/timeGrid";
+
+const personController = new PersonController();
+const programController = new ProgramController();
+const timeGridController = new TimeGridController();
 
 const person1: Person = new Person(1, 'John', 'Doe', 30);
 const person2: Person = new Person(2, 'Jane', 'Doe', 25);
@@ -16,4 +22,4 @@ const program3: Program = new Program(3, 'Program 3', 'Description 3', 3, 0, 360
 personController.setPersons([person1, person2, person3]);
 programController.setPrograms([program1, program2, program3]);
 
-server.start(3000);
+server.start(3000, personController, programController, timeGridController);

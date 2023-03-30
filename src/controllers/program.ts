@@ -1,40 +1,45 @@
 import { Program } from "../models/Program";
 
-let programs: Program[] = [];
 
-export const programController = {
-    getProgram: (id: number) => {
-        return programs.find(program => program.getId() === id);
-    },
+export class ProgramController {
+    private programs: Program[];
 
-    setPrograms: (newPrograms: Program[]) => {
-        programs = newPrograms;
-    },
+    constructor() {
+        this.programs = [];
+    }
 
-    getPrograms: () => {
-        return programs;
-    },
+    public getProgram(id: number) {
+        return this.programs.find(program => program.getId() === id);
+    }
 
-    addProgram: (program: Program) => {
-        programs.push(program);
-    },
+    public setPrograms(newPrograms: Program[]) {
+        this.programs = newPrograms;
+    }
 
-    updateProgram: (program: Program) => {
-        const index = programs.findIndex(p => p.getId() === program.getId());
+    public getPrograms() {
+        return this.programs;
+    }
+
+    public addProgram(program: Program) {
+        this.programs.push(program);
+    }
+
+    public updateProgram(program: Program) {
+        const index = this.programs.findIndex(p => p.getId() === program.getId());
         if (index === -1) {
             return;
         }
 
-        programs[index] = program;
-    },
+        this.programs[index] = program;
+    }
 
-    deleteProgram: (id: number) => {
-        const index = programs.findIndex(p => p.getId() === id);
+    public deleteProgram(id: number) {
+        const index = this.programs.findIndex(p => p.getId() === id);
         if (index === -1) {
             return;
         }
 
-        programs.splice(index, 1);
+        this.programs.splice(index, 1);
     }
 
 }
