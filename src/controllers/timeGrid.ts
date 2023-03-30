@@ -1,3 +1,4 @@
+import { Program } from "../models/Program";
 import { TimeGrid } from "../models/TimeGrid";
 
 export class TimeGridController {
@@ -8,7 +9,7 @@ export class TimeGridController {
     }
 
     public getTimeGrid(id: number): TimeGrid | undefined {
-        return this.timeGrids.find((timeGrid) => timeGrid.id === id);
+        return this.timeGrids.find((timeGrid) => timeGrid.getId() === id);
     }
 
     public setTimeGrids(timeGrids: TimeGrid[]): void {
@@ -20,12 +21,19 @@ export class TimeGridController {
     }
 
     public updateTimeGrid(timeGrid: TimeGrid): void {
-        const index = this.timeGrids.findIndex((timeGrid) => timeGrid.id === timeGrid.id);
+        const index = this.timeGrids.findIndex((tg) => tg.getId() === timeGrid.getId());
         this.timeGrids[index] = timeGrid;
     }
 
     public deleteTimeGrid(id: number): void {
-        const index = this.timeGrids.findIndex((timeGrid) => timeGrid.id === id);
+        const index = this.timeGrids.findIndex((timeGrid) => timeGrid.getId() === id);
         this.timeGrids.splice(index, 1);
+    }
+
+    public addProgramToTimeGrid(timeGridId: number, program: Program): void {
+        const timeGrid = this.getTimeGrid(timeGridId);
+        if (timeGrid) {
+            timeGrid.addProgram(program);
+        }
     }
 }

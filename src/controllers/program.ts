@@ -4,7 +4,7 @@ let programs: Program[] = [];
 
 export const programController = {
     getProgram: (id: number) => {
-        return programs.find(program => program.id === id);
+        return programs.find(program => program.getId() === id);
     },
 
     setPrograms: (newPrograms: Program[]) => {
@@ -20,7 +20,7 @@ export const programController = {
     },
 
     updateProgram: (program: Program) => {
-        const index = programs.findIndex(p => p.id === program.id);
+        const index = programs.findIndex(p => p.getId() === program.getId());
         if (index === -1) {
             return;
         }
@@ -29,7 +29,7 @@ export const programController = {
     },
 
     deleteProgram: (id: number) => {
-        const index = programs.findIndex(p => p.id === id);
+        const index = programs.findIndex(p => p.getId() === id);
         if (index === -1) {
             return;
         }

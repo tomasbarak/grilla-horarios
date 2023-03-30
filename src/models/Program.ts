@@ -1,14 +1,14 @@
 import { Person } from "./Person";
 
 export class Program {
-    id: number;
-    name: string;
-    description: string;
-    dayOfWeek: number; //0 to 6
-    startTime: number; // seconds elapsed since the beginning of the day
-    endTime: number; // seconds elapsed since the beginning of the day
-    conductores: Person[];
-    productores: Person[];
+    private id: number;
+    private name: string;
+    private description: string;
+    private dayOfWeek: number; //0 to 6
+    private startTime: number; // seconds elapsed since the beginning of the day
+    private endTime: number; // seconds elapsed since the beginning of the day
+    private conductores: Person[];
+    private productores: Person[];
 
     constructor(id: number, name: string, description: string, dayOfWeek: number, startTime: number, endTime: number, conductores: Person[], productores: Person[]) {
         this.id = id;
@@ -23,87 +23,87 @@ export class Program {
 
     // Getters
 
-    getId(): number {
+    public getId(): number {
         return this.id;
     }
 
-    getName(): string {
+    public getName(): string {
         return this.name;
     }
 
-    getDescription(): string {
+    public getDescription(): string {
         return this.description;
     }
 
-    getDayOfWeek(): number {
+    public getDayOfWeek(): number {
         return this.dayOfWeek;
     }
 
-    getStartTime(): number {
+    public getStartTime(): number {
         return this.startTime;
     }
 
-    getEndTime(): number {
+    public getEndTime(): number {
         return this.endTime;
     }
 
-    getConductores(): Person[] {
+    public getConductores(): Person[] {
         return this.conductores;
     }
 
-    getProductores(): Person[] {
+    public getProductores(): Person[] {
         return this.productores;
     }
 
     // Setters
 
-    setId(id: number): void {
+    public setId(id: number): void {
         this.id = id;
     }
 
-    setName(name: string): void {
+    public setName(name: string): void {
         this.name = name;
     }
 
-    setDescription(description: string): void {
+    public setDescription(description: string): void {
         this.description = description;
     }
 
-    setDayOfWeek(dayOfWeek: number): void {
+    public setDayOfWeek(dayOfWeek: number): void {
         this.dayOfWeek = dayOfWeek;
     }
 
-    setStartTime(startTime: number): void {
+    public setStartTime(startTime: number): void {
         this.startTime = startTime;
     }
 
-    setEndTime(endTime: number): void {
+    public setEndTime(endTime: number): void {
         this.endTime = endTime;
     }
 
-    setConductores(conductores: Person[]): void {
+    public setConductores(conductores: Person[]): void {
         this.conductores = conductores;
     }
 
-    setProductores(productores: Person[]): void {
+    public setProductores(productores: Person[]): void {
         this.productores = productores;
     }
 
     // Other methods
 
-    addConductor(conductor: Person): void {
+    public addConductor(conductor: Person): void {
         this.conductores.push(conductor);
     }
 
-    addProductor(productor: Person): void {
+    public addProductor(productor: Person): void {
         this.productores.push(productor);
     }
 
-    removeConductor(conductor: Person): void {
+    public removeConductor(conductor: Person): void {
         this.conductores = this.conductores.filter((person) => person.getId() !== conductor.getId());
     }
 
-    removeProductor(productor: Person): void {
+    public removeProductor(productor: Person): void {
         this.productores = this.productores.filter((person) => person.getId() !== productor.getId());
     }
 

@@ -5,7 +5,7 @@ let persons: Person[] = [];
 
 export const personController = {
     getPerson: (id: number) => {
-        return persons.find(person => person.id === id);
+        return persons.find(person => person.getId() === id);
     },
 
     setPersons: (newPersons: Person[]) => {
@@ -21,7 +21,7 @@ export const personController = {
     },
 
     updatePerson: (person: Person) => {
-        const index = persons.findIndex(p => p.id === person.id);
+        const index = persons.findIndex(p => p.getId() === person.getId());
         if (index === -1) {
             return;
         }
@@ -30,7 +30,7 @@ export const personController = {
     },
 
     deletePerson: (id: number) => {
-        const index = persons.findIndex(p => p.id === id);
+        const index = persons.findIndex(p => p.getId() === id);
         if (index === -1) {
             return;
         }
