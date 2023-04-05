@@ -1,0 +1,455 @@
+paths:
+  # PERSON
+  /person:
+    post:
+      tags:
+        - Person
+      summary: Creates a new person
+      description: This endpoint creates a new person
+      requestBody:
+        description: "Person to create"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Person"
+      responses:
+        "201":
+          description: "Person created"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Person"
+        "400":
+          description: "Invalid person"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Invalid person"
+    get:
+      tags:
+        - Person
+      summary: Gets all persons
+      description: "This endpoint gets all saved persons"
+      responses:
+        "200":
+          description: "Successful"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Person"
+
+    put:
+      tags:
+        - Person
+      summary: Updates a person
+      description: "This endpoint updates a person"
+      requestBody:
+        description: "Person to update"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Person"
+      responses:
+        "200":
+          description: "Successful"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Person"
+        "400":
+          description: "Invalid person"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Invalid person"
+        "404":
+          description: "Person not found"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Person not found"
+  
+  /person/{id}:
+    delete:
+      tags:
+        - Person
+      summary: Deletes a person
+      description: "This endpoint deletes a person"
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: "Numeric ID of the person to delete"
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: "Successful"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Person deleted"
+        "404":
+          description: "Person not found"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Person not found"
+    get:
+      tags:
+        - Person
+      summary: Gets person by id
+      description: This endpoint gets a person by it's id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: "Numeric ID of the person to get"
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: "Successful"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Person"
+        "404":
+          description: "Person not found"
+          content:
+            application/json:
+              schema:
+              type: string
+              example: "Person not found"
+  # PROGRAM
+  /program:
+    post:
+      tags:
+        - Program
+      summary: Creates a new program
+      description: This endpoint creates a new program
+      requestBody:
+        description: "Program to create"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Program"
+      responses:
+        "201":
+          description: "Program created"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Program"
+        "400":
+          description: "Invalid program"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Invalid program"
+    get:
+      tags:
+        - Program
+      summary: Gets all programs
+      description: "This endpoint gets all saved programs"
+      responses:
+        "200":
+          description: "Successful"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Program"
+
+    put:
+      tags:
+        - Program
+      summary: Updates a program
+      description: "This endpoint updates a program"
+      requestBody:
+        description: "Program to update"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Program"
+      responses:
+        "200":
+          description: "Successful"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Program"
+        "400":
+          description: "Invalid program"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Invalid program"
+        "404":
+          description: "Program not found"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Program not found"
+  /program/{id}:
+    delete:
+      tags:
+        - Program
+      summary: Deletes a program
+      description: "This endpoint deletes a program"
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: "Numeric ID of the program to delete"
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: "Successful"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Program deleted"
+        "404":
+          description: "Program not found"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Program not found"
+    get:
+      tags:
+        - Program
+      summary: Gets program by id
+      description: This endpoint gets a program by it's id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: "Numeric ID of the program to get"
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: "Successful"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Program"
+        "404":
+          description: "Program not found"
+          content:
+            application/json:
+              schema:
+              type: string
+              example: "Program not found"
+  # TIMEGRID
+  /timeGrid:
+    post:
+      tags:
+        - Timegrid
+      summary: Creates a new timegrid
+      description: This endpoint creates a new timegrid
+      requestBody:
+        description: "Timegrid to create"
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Timegrid"
+            example:
+              id: 1
+      responses:
+        "201":
+          description: "Timegrid created"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Timegrid"
+        "400":
+          description: "Invalid timegrid"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Invalid timegrid"
+    get:
+      tags:
+        - Timegrid
+      summary: Gets all timegrids
+      description: "This endpoint gets all saved timegrids"
+      responses:
+        "200":
+          description: "Successful"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Timegrid"
+  /timeGrid/{id}:
+    delete:
+      tags:
+        - Timegrid
+      summary: Deletes a timegrid
+      description: "This endpoint deletes a timegrid"
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: "Numeric ID of the timegrid to delete"
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: "Successful"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Timegrid deleted"
+        "404":
+          description: "Timegrid not found"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Timegrid not found"
+    get:
+      tags:
+        - Timegrid
+      summary: Gets timegrid by id
+      description: This endpoint gets a timegrid by it's id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: "Numeric ID of the timegrid to get"
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: "Successful"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Timegrid"
+        "404":
+          description: "Timegrid not found"
+          content:
+            application/json:
+              schema:
+              type: string
+              example: "Timegrid not found"
+  /timeGrid/{id}/program:
+    get:
+      tags:
+        - Timegrid
+      summary: Gets all programs in a timegrid
+      description: This endpoint gets all programs in a timegrid
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: "Numeric ID of the timegrid to get programs from"
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: "Successful"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Program"
+        "404":
+          description: "Timegrid not found"
+          content:
+            application/json:
+              schema:
+              type: string
+              example: "Timegrid not found"
+  /timeGrid/{id}/program/{id}:
+    get:
+      tags:
+        - Timegrid
+      summary: Gets a program in a timegrid
+      description: This endpoint gets a program in a timegrid
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: "Numeric ID of the timegrid to get program from"
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          description: "Numeric ID of the program to get"
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: "Successful"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Program"
+        "404":
+          description: "Timegrid or program not found"
+          content:
+            application/json:
+              schema:
+              type: string
+              example: "Timegrid or program not found"
+    delete:
+      tags:
+        - Timegrid
+      summary: Deletes a program in a timegrid
+      description: "This endpoint deletes a program in a timegrid"
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: "Numeric ID of the timegrid to delete program from"
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          description: "Numeric ID of the program to delete"
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: "Successful"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Program deleted"
+        "404":
+          description: "Timegrid or program not found"
+          content:
+            application/json:
+              schema:
+              type: string
+              example: "Timegrid or program not found"

@@ -2,18 +2,19 @@ import { Application } from "express"
 import { PersonController } from "../../controllers/person";
 
 export const init = (app: Application, personController: PersonController) => {
+    
+    app.post("/person", (req, res) => {
+        const person = req.body;
+        personController.addPerson(person);
+        res.status(201).json(person);
+    });
+
     app.get("/person", (req, res) => {
         res.json(personController.getPersons());
     });
 
-    app.post("/person", (req, res) => {
-        const person = req.body.person;
-        personController.addPerson(person);
-        res.json(person);
-    });
-
     app.put("/person", (req, res) => {
-        const person =  req.body.person;
+        const person =  req.body;
         personController.updatePerson(person);
         res.json(person);
     });
