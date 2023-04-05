@@ -2,7 +2,7 @@ import express, { Application } from "express";
 import cors from "cors";
 
 import swaggerUi from "swagger-ui-express";
-import swaggerSetup from "../../docs/swagger";
+import swaggerSetup from "./swagger";
 
 import yaml from "yaml";
 import fs from "fs";
