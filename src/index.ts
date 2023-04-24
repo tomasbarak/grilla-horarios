@@ -22,4 +22,4 @@ const program3: Program = new Program(3, 'Program 3', 'Description 3', 3, 0, 360
 personController.setPersons([person1, person2, person3]);
 programController.setPrograms([program1, program2, program3]);
 
-server.start(3000, personController, programController, timeGridController);
+server.start(80, personController, programController, timeGridController);
